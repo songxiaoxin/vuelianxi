@@ -42,12 +42,12 @@
                     <td>{{item.name}}</td>
                     <td>{{item.age}}</td>
                     <td>
-                        <button type="button" class="btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="nowindex=aa,text1='确认要删除当条信息麽'" >删除</button>
+                        <button type="button" class="btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="nowindex=aa" >删除</button>
                     </td>
                 </tr>
                 <tr v-show="todolist.length!=0">
                     <td colspan="4">
-                        <button class="btn btn-danger" class="btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="nowindex=-2,text1='确认全部删除麽'" >全部删除</button>
+                        <button class="btn btn-danger" class="btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="nowindex=-2" >全部删除</button>
                     </td>
                 </tr>
                 <tr  v-show="todolist.length==0">
@@ -112,6 +112,12 @@
                         this.todolist.splice(n,1)
 
                     }
+                },
+                deleteSingle:function () {
+                  this.text1='删除单条信息？'
+                },
+                deleteAll:function () {
+                    this.text1='删除所有信息？'
                 },
                 shubiao:function (ev,aa) {
                     alert(ev.clientX)
