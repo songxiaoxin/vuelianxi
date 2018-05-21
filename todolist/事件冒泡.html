@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件冒泡</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            background: burlywood;
+        }
+    </style>
+</head>
+<body>
+<div id="app" style="text-align: center">
+   <div @click="show2">
+       <button @click.stop="show()">点击事件</button>
+       <button @contextmenu.stop.prevent="youjian">右键默认行为</button>
+       <input type="text" @keyup.up="shang">
+   </div>
+
+    <br>
+    <br>
+    <br>
+    <p :class="[red,blue]"> 我是文字</p>
+
+</div>
+
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+              red:'red',
+              blue:'blue'
+            },
+            methods:{
+                show:function (ev) {
+                    alert(1)
+                },
+                show2:function () {
+                    alert(2)
+                },
+                youjian:function () {
+                    alert(3)
+                },
+                shang:function () {
+                    alert('上')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

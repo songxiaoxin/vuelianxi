@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <form  action="#" class="">
+        <div class="container">
+
+                <div class="form-group">姓名：</div>
+                <input type="text" class="form-control" id="name" placeholder="请输入姓名" v-model="usename" value="" required="">
+                <div class="form-group">年龄：</div>
+                <input type="text" class="form-control" id="age" placeholder="请输入年龄" v-model="age" value="" required="">
+                <div class="p-2">
+                    <button class="btn btn-success" @click="add">添加</button>
+                    <button class="btn btn-danger" type="reset">重置</button>
+                </div>
+
+        </div>
+    </form>
+    <div class="container text-center">
+
+            <h3>列表统计</h3>
+            <table class="table table-bordered">
+                <thead>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>操作</th>
+                </thead>
+                <tr v-for="(item,aa) in todolist">
+                    <td>{{aa+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <button type="button" class="btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="nowindex=aa,text1='确认要删除当条信息麽'" >删除</button>
+                    </td>
+                </tr>
+                <tr v-show="todolist.length!=0">
+                    <td colspan="4">
+                        <button class="btn btn-danger" class="btn-danger btn-sm" data-toggle="modal" data-target="#myModal" @click="nowindex=-2,text1='确认全部删除麽'" >全部删除</button>
+                    </td>
+                </tr>
+                <tr  v-show="todolist.length==0">
+                    <td colspan="4" class="text-info">暂无信息....</td>
+                </tr>
+            </table>
+
+    </div>
+        <!--弹出框-->
+    <div class="modal fade bs-example-modal-sm fade" tabindex="-1" id="myModal" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">提示信息</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+                <div class="modal-body">
+                    <p> {{text1}}</p>
+                    <input type="text" v-model="text1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"  @click="reduce(nowindex)">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <button @click="shubiao($event,12)">点击事件</button>
+</div>
+
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+               todolist:[{name:'张三',age:16},{name:'李四',age:30}],
+//                todolist:[],
+                usename:'',
+                age:'',
+                nowindex:-1000,
+                text1:'确认要删除当条信息麽'
+            },
+            methods:{
+                add:function () {
+                   this.todolist.push({
+                       name:this.usename,
+                       age:this.age
+                   });
+                    this.usename='';
+                    this.age='';
+                },
+                reduce:function (n) {
+                    if(n==-2){
+                        this.todolist='';
+                    }else{
+                        this.todolist.splice(n,1)
+
+                    }
+                },
+                shubiao:function (ev,aa) {
+                    alert(ev.clientX)
+                    alert(aa)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

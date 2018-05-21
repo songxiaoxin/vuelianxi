@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HEllo world</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>hello world</h1>
+    <hr>
+    <div id="app">
+        <songxiaoxin_1>
+            <span slot="bolgurl">{{sxxDate.bolgurl}} </span>
+            <span slot="netName">{{sxxDate.netName}} aaa</span>
+            <span slot="skill">{{sxxDate.skill}} </span>
+        </songxiaoxin_1>
+    </div>
+
+    <template id="tep">
+        <div>
+            <p>博客地址: <slot name="bolgurl"></slot></p>
+            <p>网名: <slot name="netName"></slot></p>
+            <p>技能: <slot name="skill"></slot></p>
+        </div>
+    </template>
+    <script type="text/javascript">
+        var songxiaoxin={
+            template:'#tep'
+        }
+        var app=new Vue({
+            el:'#app',
+            data:{
+               sxxDate:{
+                   bolgurl:'http://13.com',
+                   netName:'宋晓鑫1',
+                   skill:'web前端'
+               }
+            },
+            components:{
+                'songxiaoxin_1':songxiaoxin
+            }
+        })
+    </script>
+</body>
+</html>
